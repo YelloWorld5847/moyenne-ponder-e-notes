@@ -38,6 +38,25 @@ def calculer_moyenne_pondérée(notes_coefficients):
 notes_coefficient_dict = ranger_notes_et_coefficient(notes_entrees)
 
 moyenne = calculer_moyenne_pondérée(notes_coefficient_dict)
-print("La moyenne pondérée est :", moyenne)
-print("Content-type: text/html\n")
-print(f"La moyenne pondérée est : {moyenne}")
+# print("La moyenne pondérée est :", moyenne)
+# print("Content-type: text/html\n")
+# print(f"La moyenne pondérée est : {moyenne}")
+
+# Générer la page HTML avec le résultat
+html_resultat = f"""
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Résultat de la moyenne pondérée</title>
+</head>
+<body>
+    <h1>Résultat de la moyenne pondérée</h1>
+    <p>La moyenne pondérée est : {moyenne}</p>
+</body>
+</html>
+"""
+
+# Afficher la page HTML
+print("Content-Type: text/html")
+print()
+print(html_resultat)
