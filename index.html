@@ -36,7 +36,7 @@
             return moyennePondérée;
         }
 
-        const notesEntrees = prompt("Entrez vos notes et coefficients en les séparant par ':' puis séparez-les par un ';' :");
+        const notesEntrees = prompt("Entrez vos notes et coefficients en les séparant par ':' puis séparez-les par un ';' ex: 20:1;15:0.5");
         const notesCoefficientDict = rangerNotesEtCoefficient(notesEntrees);
         const moyenne = calculerMoyennePondérée(notesCoefficientDict);
 
