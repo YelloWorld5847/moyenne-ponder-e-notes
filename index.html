@@ -6,9 +6,47 @@
 <body>
     <h1>Calculatrice de moyenne pondérée</h1>
     <form action="calcul.py" method="post">
-        <label for="notes">Entrez vos notes et coefficients en les séparant par ':' puis séparez-les par un ';': "</label>
+        <label for="notes">Entrez vos notes et coefficients :</label>
         <input type="text" id="notes" name="notes">
         <input type="submit" value="Calculer">
     </form>
+    <p>Résultat : <span id="resultat"></span></p>
+
+    <script>
+        // Code Python pour calculer la moyenne pondérée
+        function rangerNotesEtCoefficient(entrée) {
+            // Remplacer toutes les virgules par des points
+            entrée = entrée.replace(',', '.');
+
+            const notesEtCoefficient = {};
+            const notesCoefficientListe = entrée.split(';');
+            for (const noteCoefficient of notesCoefficientListe) {
+                const [note, coefficient] = noteCoefficient.split(':');
+                notesEtCoefficient[parseFloat(note)] = parseFloat(coefficient);
+            }
+            return notesEtCoefficient;
+        }
+
+        function calculerMoyennePondérée(notesCoefficients) {
+            let sommeProduits = 0;
+            let sommeCoefficients = 0;
+
+            for (const [note, coefficient] of Object.entries(notesCoefficients)) {
+                const produit = note * coefficient;
+                sommeProduits += produit;
+                sommeCoefficients += coefficient;
+            }
+
+            const moyennePondérée = sommeProduits / sommeCoefficients;
+            return moyennePondérée;
+        }
+
+        const notesEntrees = prompt("Entrez vos notes et coefficients en les séparant par ':' puis séparez-les par un ';' :");
+        const notesCoefficientDict = rangerNotesEtCoefficient(notesEntrees);
+        const moyenne = calculerMoyennePondérée(notesCoefficientDict);
+
+        // Afficher le résultat dans la page
+        document.getElementById("resultat").textContent = "La moyenne pondérée est : " + moyenne;
+    </script>
 </body>
 </html>
